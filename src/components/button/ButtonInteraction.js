@@ -5,6 +5,11 @@ export class ButtonInteraction {
 
     this._configureInteractionType();
     this._configureEvents();
+
+    // Garante que o botão sempre inicie no estado normal
+    queueMicrotask(() => {
+      this._mouseOut();
+    });
   }
 
   _configureInteractionType() {
@@ -16,6 +21,12 @@ export class ButtonInteraction {
     this.button.on('pointerover', () => this._mouseOver());
     this.button.on('pointerout', () => this._mouseOut());
     this.button.on('pointerup', () => this._mouseUp());
+
+    // Sempre que o botão for adicionado novamente à tela,
+    // volta para o estado normal.
+    this.button.on('added', () => {
+      this._mouseOut();
+    });
   }
 
   _mouseOver() {
@@ -41,6 +52,10 @@ export class ButtonInteraction {
   _mouseUp() {
     if (this.button.background.visible) {
       this.button.background.changeColor(this.buttonConfig.backgroundColor);
+    }
+
+    if (typeof this.button.onLeave === 'function') {
+      this.button.onLeave();
     }
   }
 }
