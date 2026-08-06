@@ -4,11 +4,11 @@ export const wellDoneTextStyles = {
   desktop: {
     fontSize: 50,
     align: 'center',
-    fill: GLOBAL_COLORS.WHITE,
+    fill: 0x5549e3,
   },
   mobile: {
     fontSize: 50,
     align: 'center',
-    fill: GLOBAL_COLORS.WHITE,
+    fill: 0x5549e3,
   },
 };

@@ -10,9 +10,9 @@ export class Title extends Sprite {
     this.anchor.set(0.5);
     this.position.set(
       homeScreenPositions.title.desktop.x,
-      homeScreenPositions.title.desktop.y + 30
+      homeScreenPositions.title.desktop.y + 20
     );
 
-    this.scale.set(0.36);
+    this.scale.set(0.80);
   }
 }

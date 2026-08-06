@@ -1,5 +1,5 @@
 import { Text, TextStyle } from "pixi.js";
-const HOVER_BORDER_COLOR = 0x853700;
+const HOVER_BORDER_COLOR = 0x03BB85;
 
 /**
  * Configura os listeners de eventos para os contêineres de nome selecionados.

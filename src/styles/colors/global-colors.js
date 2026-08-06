@@ -1,6 +1,6 @@
 export const GLOBAL_COLORS = {
-  PRIMARY: 0xE39F2D, // Dark blue
-  SECONDARY: 0x474747, // Orange
+  PRIMARY: 0xFF7E00, // Dark blue
+  SECONDARY: 0x5549e3, // Orange
   BUTTONS_HOVER: 0xFCD2AE, // Light orange
   WHITE: 0xFFFFFF,
   BLACK: 0x000000,

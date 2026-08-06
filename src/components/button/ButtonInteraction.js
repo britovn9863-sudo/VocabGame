@@ -19,12 +19,28 @@ export class ButtonInteraction {
   }
 
   _mouseOver() {
-    this.button.background.changeColor(this.buttonConfig.hoverColor);
+    if (this.button.background.visible) {
+      this.button.background.changeColor(this.buttonConfig.hoverColor);
+    }
+
+    if (typeof this.button.onHover === 'function') {
+      this.button.onHover();
+    }
   }
+
   _mouseOut() {
-    this.button.background.changeColor(this.buttonConfig.backgroundColor);
+    if (this.button.background.visible) {
+      this.button.background.changeColor(this.buttonConfig.backgroundColor);
+    }
+
+    if (typeof this.button.onLeave === 'function') {
+      this.button.onLeave();
+    }
   }
+
   _mouseUp() {
-    this.button.background.changeColor(this.buttonConfig.backgroundColor);
+    if (this.button.background.visible) {
+      this.button.background.changeColor(this.buttonConfig.backgroundColor);
+    }
   }
 }

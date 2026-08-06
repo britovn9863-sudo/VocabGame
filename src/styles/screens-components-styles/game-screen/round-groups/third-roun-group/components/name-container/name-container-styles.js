@@ -3,7 +3,7 @@ export const nameContainerStyles = {
     width: 270,
     height: 75,
     backgroundColor: 0xf5f5f5,
-    borderColor: 0x474747,
+    borderColor: 0x5549e3,
     textColor: 0x000001,
     borderWidth: 5,
     borderRadius: 35,
