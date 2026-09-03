@@ -1,0 +1,99 @@
+import { Rectangle, Sprite, Texture } from "pixi.js";
+import { CustomButton } from "../../../../components/button/CustomButton.js";
+import { categoriesScreenPositions } from "../../../../styles/screens-components-positions/categories-screen/categories-screen-components-positions.js";
+import { categoriesScreenStyles } from "../../../../styles/screens-components-styles/categories-screen/categories-screen-components-styles.js";
+import ButtonLeft from "../../../../assets/images/button_left.png";
+import ButtonRightHover from "../../../../assets/images/button_right_hover.png";
+
+export class PreviousButton extends CustomButton {
+  constructor() {
+    super('', categoriesScreenStyles.navigationButtons.desktop);
+
+    this.background.visible = false;
+    this.text.visible = false;
+
+    const normalTexture = Texture.from(ButtonLeft);
+    const hoverTexture = Texture.from(ButtonRightHover);
+    this.arrow = new Sprite(normalTexture);
+    this.arrow.anchor.set(0.5);
+
+    // The normal button assets are 677x369. Use their intrinsic dimensions
+    // instead of texture.orig at construction time so the first render cannot
+    // use the temporary dimensions Pixi has before the image finishes loading.
+    this._normalTextureWidth = 677;
+    this._normalTextureHeight = 369;
+
+    this._setNormalArrowSize();
+    this._centerArrow();
+    this.addChild(this.arrow);
+
+    this.hitArea = new Rectangle(
+      0,
+      0,
+      categoriesScreenStyles.navigationButtons.desktop.width,
+      categoriesScreenStyles.navigationButtons.desktop.height
+    );
+
+    this.onHover = () => {
+      this.arrow.texture = hoverTexture;
+      this._setHoverArrowSize();
+    };
+
+    this.onLeave = () => {
+      this.arrow.texture = normalTexture;
+      this._setNormalArrowSize();
+    };
+
+    this._setPosition();
+  }
+
+  updateStyle(newOptions) {
+    super.updateStyle(newOptions);
+    this._setNormalArrowSize();
+    this._centerArrow();
+    this._updateHitArea();
+  }
+
+  _setNormalArrowSize() {
+    const textureWidth = this._normalTextureWidth;
+    const textureHeight = this._normalTextureHeight;
+    const maxWidth = this.options.width;
+    const maxHeight = this.options.height;
+    const scale = Math.min(maxWidth / textureWidth, maxHeight / textureHeight) * 1.35;
+
+    this.arrow.width = textureWidth * scale;
+    this.arrow.height = textureHeight * scale;
+    this._normalArrowHeight = this.arrow.height;
+  }
+
+  _setHoverArrowSize() {
+    // Hover assets are 678x877. Keep their own proportions while preserving
+    // exactly the same visual height as the normal arrow.
+    const textureWidth = 678;
+    const textureHeight = 877;
+    const targetHeight = this._normalArrowHeight;
+    const scale = targetHeight / textureHeight;
+
+    this.arrow.width = textureWidth * scale;
+    this.arrow.height = targetHeight;
+  }
+
+  _centerArrow() {
+    this.arrow.position.set(
+      this.options.width / 2,
+      this.options.height / 2
+    );
+  }
+
+  _updateHitArea() {
+    this.hitArea.width = this.options.width;
+    this.hitArea.height = this.options.height;
+  }
+
+  _setPosition() {
+    const positionX = categoriesScreenPositions.previousButton.desktop.x;
+    const positionY = categoriesScreenPositions.previousButton.desktop.y;
+
+    this.position.set(positionX, positionY);
+  }
+}
