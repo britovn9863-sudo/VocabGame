@@ -1,0 +1,45 @@
+/* Orientação Vertical (Mobile / Portrait) */
+@media (orientation: portrait) {
+  body {
+    padding: 1vh;
+  }
+
+  #game-container {
+    aspect-ratio: 0.7;
+    width: min(95vw, 95vh * 0.7);
+    border-width: 0.6vw;
+    border-radius: 4.3vw;
+  }
+}
+
+@media (orientation: portrait) and (max-width: 374px) {
+  body {
+    padding: 0.5vh;
+  }
+
+  #game-container {
+    border-width: 0.8vw;
+  }
+}
+
+/* Orientação Horizontal (Desktop / Landscape) */
+@media (orientation: landscape) {
+  body {
+    padding: 1vh;
+  }
+
+  #game-container {
+    aspect-ratio: 1.45;
+    width: min(75vw, 85vh * 1.45);
+    max-width: 75vw;
+    border-width: 0.4vw;
+    border-radius: 4.3vw;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 550px) {
+  #game-container {
+    width: min(90vw, 90vh * 1.45);
+    max-width: 90vw;
+  }
+}
